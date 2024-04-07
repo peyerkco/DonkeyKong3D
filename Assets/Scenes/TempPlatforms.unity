@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 365689421}
   m_Layer: 6
   m_Name: PlayerObj
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2182,9 +2182,10 @@ GameObject:
   - component: {fileID: 1639544955}
   - component: {fileID: 1639544956}
   - component: {fileID: 1639544957}
+  - component: {fileID: 1639544958}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2257,6 +2258,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   orientation: {fileID: 25719184}
+--- !u!114 &1639544958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639544954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4865759a55cd09c45b457c2b8d02617c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1639544955}
+  speedUpDown: 80
+  FPSControl: {fileID: 0}
+  upKey: 119
+  downKey: 115
 --- !u!4 &1702557031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3202344531015279063, guid: 89c3152957dac7e4692cbbeab607618f, type: 3}
