@@ -9,6 +9,7 @@ TagManager:
   - Right
   - Left
   - End
+  - Win
   layers:
   - Default
   - TransparentFX

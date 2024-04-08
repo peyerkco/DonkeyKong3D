@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 // IMPORTANT
@@ -17,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
+
+    [Header("WinLose")]
+    public GameObject winCanvas;
+    public GameObject loseCanvas;
+    private bool canMove;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -41,11 +47,15 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        canMove = true;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if(!canMove) {
+            return;
+        }
         onPlatform = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, isPlatform);
 
         MyInput();
@@ -64,6 +74,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void MyInput() {
+        if(!canMove) {
+            return;
+        }
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -76,6 +89,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void MovePlayer() {
+        if(!canMove) {
+            return;
+        }
         // Calculate moveDirection
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -106,5 +122,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetJump() {
         readyToJump = true;
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "Win") {
+            canMove = false;
+            readyToJump = false;
+            winCanvas.SetActive(true);
+        }
+        if(other.gameObject.tag == "Barrel") {
+            canMove = false;
+            readyToJump = false;
+            loseCanvas.SetActive(true);
+        }
     }
 }
