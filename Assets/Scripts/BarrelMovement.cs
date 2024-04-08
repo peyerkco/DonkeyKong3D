@@ -30,5 +30,12 @@ public class BarrelMovement : MonoBehaviour
             rb.AddForce(-barrel.forward * rollSpeed, ForceMode.Impulse);
             Debug.Log("Left");
         }
+        if(other.gameObject.tag == "End") {
+            KillBarrel();
+        }
+    }
+
+    private void KillBarrel() {
+        Destroy(gameObject);
     }
 }
