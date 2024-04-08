@@ -130,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
             readyToJump = false;
             winCanvas.SetActive(true);
         }
+    }
+    private void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Barrel") {
             canMove = false;
             readyToJump = false;
