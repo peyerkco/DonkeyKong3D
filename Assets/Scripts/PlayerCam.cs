@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// IMPORTANT
-// Player movement and first person camera movement were learned and inspired from this tutorial:
-// https://youtu.be/f473C43s8nE?si=MRKiLRorH072uRfu
-
 public class PlayerCam : MonoBehaviour
 {
     public float sensX;
@@ -16,14 +12,12 @@ public class PlayerCam : MonoBehaviour
     float xRotation;
     float yRotation;
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Get mouse input

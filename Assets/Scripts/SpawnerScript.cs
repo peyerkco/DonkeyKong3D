@@ -7,7 +7,6 @@ public class SpawnerScript : MonoBehaviour
     public GameObject barrelPrefab;
     public float spawnTime = 3.0f;
 
-    // Start is called before the first frame update
     void Start()
     {
         Spawn();

@@ -13,14 +13,12 @@ public class LadderMovement : MonoBehaviour
     public KeyCode upKey = KeyCode.W;
     public KeyCode downKey = KeyCode.S;
 
-    // Start is called before the first frame update
     void Start()
     {
         onLadder = false;
         FPSControl = GetComponent<PlayerMovement>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(onLadder && Input.GetKey(upKey)) {

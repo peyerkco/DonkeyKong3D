@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-// IMPORTANT
-// Player movement and first person camera movement were learned and inspired from this tutorial:
-// https://youtu.be/f473C43s8nE?si=MRKiLRorH072uRfu
-
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed;
-
     public float platformDrag;
-
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
@@ -33,15 +27,12 @@ public class PlayerMovement : MonoBehaviour
     bool onPlatform;
 
     public Transform orientation;
-
     float horizontalInput;
     float verticalInput;
-
     Vector3 moveDirection;
-
     Rigidbody rb;
+    public MonoBehaviour playerCameraController;
 
-    // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if(!canMove) {
@@ -126,16 +116,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Win") {
-            canMove = false;
-            readyToJump = false;
-            winCanvas.SetActive(true);
+            EndGame(winCanvas);
         }
     }
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag == "Barrel") {
-            canMove = false;
-            readyToJump = false;
-            loseCanvas.SetActive(true);
+        if(other.gameObject.tag == "Barrel" || other.gameObject.tag == "Enemy" || other.gameObject.tag == "Monkey") {
+            EndGame(loseCanvas);
         }
+    }
+
+    private void EndGame(GameObject canvas) {
+        canMove = false;
+        readyToJump = false;
+        canvas.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        playerCameraController.enabled = false;
     }
 }
